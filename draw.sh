@@ -4,6 +4,7 @@ Draw::DrawAt() {
   file=$3
   declare -i i=1
 
+  tput clear
   tput cup $pos_y $pos_x
 
   while IFS= read -r line; do
