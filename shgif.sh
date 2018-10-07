@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+#
+# shgif -- ASCII gif player
+#
+# copyright (c) 2018 Cj-bc
+# This software is released under MIT License
+#
+# @(#) ver1.0
 
 ex_path=${0%\/*}
 source ${ex_path}/draw.sh
