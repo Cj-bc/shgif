@@ -10,6 +10,7 @@ file_path=${1%\/*}
 tput clear
 
 while read first second third rest; do
+  tput civis
   case $first in
     "sleep" ) sleep $second;;
     [0-9][0-9] ) Draw::DrawAt $first $second ${file_path}/src/${third}.txt;;
@@ -18,3 +19,4 @@ while read first second third rest; do
 done < $1
 
 tput cud 3
+tput cnorm

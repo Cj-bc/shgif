@@ -5,6 +5,7 @@ Draw::DrawAt() {
   declare -i i=1
 
   tput clear
+  tput civis # hide cursor
   tput cup $pos_y $pos_x
 
   while IFS= read -r line; do
@@ -12,4 +13,6 @@ Draw::DrawAt() {
     tput cup $(( $pos_y + i)) $pos_x
     i+=1
   done < $file
+
+  tput cnorm # appear cursor
 }
