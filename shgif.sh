@@ -5,7 +5,7 @@
 # copyright (c) 2018 Cj-bc
 # This software is released under MIT License
 #
-# @(#) ver1.0
+# @(#) ver1.0.1
 
 ex_path=${0%\/*}
 source ${ex_path}/draw.sh
