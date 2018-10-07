@@ -5,7 +5,8 @@ Draw::DrawAt() {
   declare -i i=1
 
   tput cup $pos_y $pos_x
-  while IFS= read line; do
+
+  while IFS= read -r line; do
     echo -n "$line"
     tput cup $(( $pos_y + i)) $pos_x
     i+=1
