@@ -1,3 +1,10 @@
+# changelog
+
+## [1.0.1] - 2018-10-07
+### Fixed
+  - Don't clear each time `Draw::DrawAt` is called
+  - Fix example/walking_cat to fit with avobe fix.
+
 v1.0 written: [2018-10-07]
   * The first release.
   * `./shgif.sh <your shgif file>` to run shgif file
