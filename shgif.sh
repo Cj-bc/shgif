@@ -5,7 +5,7 @@
 # copyright (c) 2018 Cj-bc
 # This software is released under MIT License
 #
-# @(#) ver1.0.1
+# @(#) ver1.1
 # @(#) for bash4 or higher
 
 Shigif.Init() {
