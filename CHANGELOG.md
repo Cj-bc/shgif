@@ -3,6 +3,14 @@
 CHANGELOG is written in [keepchangelog](https://keepachangelog.com/en/1.0.0/) format
 Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://www.softantenna.com/wp/software/keep-a-changeloag/)
 
+## [1.1] - 2018-10-08
+### Added
+  - introduce rule for CHANGELOG
+  - `.tar`/`.tar.gz` file support
+### Changed
+  - all codes are now in functions.
+
+
 ## [1.0.1] - 2018-10-07
 ### Fixed
   - Don't clear each time `Draw::DrawAt` is called
