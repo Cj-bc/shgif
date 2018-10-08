@@ -1,4 +1,6 @@
-Draw::DrawAt() {
+# draw picture at <x> <y>
+# @param <int x> <int y> <string file>
+Shgif::DrawAt() {
   pos_x=$1
   pos_y=$2
   file=$3
