@@ -8,7 +8,7 @@
 # @(#) ver1.0.1
 
 Shigif.Init() {
-  ex_path=${0%\/*}
+  local ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
   source ${ex_path}/lib/draw.sh
 
   tput clear
