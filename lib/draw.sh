@@ -24,6 +24,65 @@ File::SetColorFile() {
   done < <(echo $col_back)
 }
 
+# combine picture txt and color layer
+Shgif::GenerateColoerdPicture() {
+  local file=$1
+  local -i i=1
+  local -a parsedFile=()
+  local output="" # this string will be return
+  local color_file="${file%/*}/color/${file##*/}"
+  local -A col_fore=() # contains key:value pair for foreground_color
+  local -A col_back=() # contains key:value pair for background_color
+
+  # parse files into Array
+  File::ParseToArray $file parsedFile
+  File::ParseToArray $color_file parsedColorFile
+  File::SetColorFile $color_file col_force col_back
+
+
+  # treat line by line
+  for ((lineno=0;lineno<=${#parsedFile[@]};lineno++)); do
+    local line="${parsedFile[$lineno]}"
+    local color_line="${parsedColorFile[$lineno]}"
+
+    # treat each char by char
+    for ((charno=0;charno<=${#line};charno++)); do
+      local ch=${line:$charno:1}
+      local ch_col=${color_line:$charno:1}
+      local expr
+      local col_num
+
+      # if no color char is set, just add original char
+      # or not, insert color change befor char
+      # with full ornaments:
+      #   output+="$(tput setaf <int number>)$(tput setab <int number>)<string char>"
+      # or with no color:
+      #   output+="$(tput sgr0)<string char>"
+      if [[ "$ch" = "$ch_col" ]];then
+        output+='$(tput sgr0)' # reset if other color is set
+        output+="$ch"
+      else
+        if [[ "$ch_col" =~ "${!col_fore[@]}" ]]; then
+          expr='$(tput setaf'
+          col_num="${col_fore[$ch_col]}"
+          output+="${expr} ${col_num})"
+        fi
+        if [[ "$ch_col" =~ "${!col_back[@]}" ]]; then
+          expr='$(tput setbf'
+          col_num="${col_back[$ch_col]}"
+          output+="${expr} ${col_num})"
+        fi
+        output+="$ch"
+      fi
+    done
+
+    output+='\n'
+  done
+
+  echo "$output"
+}
+
+
 # draw picture at <x> <y>
 # @param <int x> <int y> <string file>
 Shgif::DrawAt() {
