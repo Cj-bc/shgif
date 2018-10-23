@@ -6,6 +6,24 @@ File::ParseToArray() {
   done < $file
 }
 
+# @param <string file_path> <string Aarray var name> <string Aarray var name>
+File::SetColorFile() {
+  local file=$1
+  local -n fore_ref=$2
+  local -n back_ref=$3
+  local col_fore=$(cat $file | head -n1)
+  local col_back=$(cat $file | head -n2 | tail -n1)
+
+  local line
+  while IFS=, read -r line;do
+    fore_ref[${line%=*}]="${line#*=}"
+  done < <(echo $col_fore)
+
+  while IFS=, read -r line;do
+    back_ref[${line%=*}]="${line#*=}"
+  done < <(echo $col_back)
+}
+
 # draw picture at <x> <y>
 # @param <int x> <int y> <string file>
 Shgif::DrawAt() {
