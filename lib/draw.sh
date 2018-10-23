@@ -39,7 +39,7 @@ Shgif::GenerateColoerdPicture() {
   File::ParseToArray $color_file parsedColorFile
   File::SetColorFile $color_file col_force col_back
 
-
+  parsedFile=(${parsedFile[@]:2})
   # treat line by line
   for ((lineno=0;lineno<=${#parsedFile[@]};lineno++)); do
     local line="${parsedFile[$lineno]}"
@@ -75,8 +75,7 @@ Shgif::GenerateColoerdPicture() {
         output+="$ch"
       fi
     done
-
-    output+='\n'
+    output+="\n"
   done
 
   echo "$output"
