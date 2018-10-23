@@ -1,3 +1,11 @@
+File::ParseToArray() {
+  file=$1
+  declare -n ret=$2
+  while IFS= read -r line; do
+    ret=(${lines[@]} "$line")
+  done < $file
+}
+
 # draw picture at <x> <y>
 # @param <int x> <int y> <string file>
 Shgif::DrawAt() {
