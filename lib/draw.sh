@@ -98,7 +98,7 @@ Shgif::DrawAt() {
     echo -n "$line"
     tput cup $(( $pos_y + i)) $pos_x
     i+=1
-  done < $file
+  done < <(echo $file)
 
   tput cnorm # appear cursor
 }
