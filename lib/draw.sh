@@ -62,12 +62,12 @@ Shgif::GenerateColoerdPicture() {
         output+='$(tput sgr0)' # reset if other color is set
         output+="$ch"
       else
-        if [[ "$ch_col" =~ "${!col_fore[@]}" ]]; then
+        if [[ "${!col_fore[@]}" =~ "$ch_col" ]]; then
           expr='$(tput setaf'
           col_num="${col_fore[$ch_col]}"
           output+="${expr} ${col_num})"
         fi
-        if [[ "$ch_col" =~ "${!col_back[@]}" ]]; then
+        if [[ "${!col_back[@]}" =~ "$ch_col" ]]; then
           expr='$(tput setbf'
           col_num="${col_back[$ch_col]}"
           output+="${expr} ${col_num})"
