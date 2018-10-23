@@ -1,10 +1,10 @@
 # draw picture at <x> <y>
 # @param <int x> <int y> <string file>
 Shgif::DrawAt() {
-  pos_x=$1
-  pos_y=$2
-  file=$3
-  declare -i i=1
+  local pos_x=$1
+  local pos_y=$2
+  local file=$(Shgif::GenerateColoerdPicture $3)
+  local -i i=1
 
   tput civis # hide cursor
   tput cup $pos_y $pos_x
