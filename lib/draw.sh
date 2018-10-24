@@ -1,11 +1,11 @@
 File::ParseToArray() {
   file=$1
   declare -n ret=$2
+  set -f
   while IFS= read -r line; do
-    set -f
-    ret=("${ret[*]}" "$line")
-    set +f
+    ret=("${ret[@]}" "$line")
   done < $file
+  set +f
 }
 
 # @param <string file_path> <string Aarray var name> <string Aarray var name>
@@ -42,7 +42,9 @@ Shgif::GenerateColoerdPicture() {
   File::ParseToArray $color_file parsedColorFile
   File::SetColorFile $color_file col_force col_back
 
+  set -f
   parsedColorFile=(${parsedColorFile[@]:2})
+  set +f
   # treat line by line
   for ((lineno=0;lineno<=${#parsedFile[@]};lineno++)); do
     local line="${parsedFile[$lineno]}"
