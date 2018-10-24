@@ -41,8 +41,8 @@ Shgif::GenerateColoerdPicture() {
 
   parsedColorFile=(${parsedColorFile[@]:2})
   # treat line by line
-  for ((lineno=0;lineno<=${#parsedColorFile[@]};lineno++)); do
-    local line="${parsedColorFile[$lineno]}"
+  for ((lineno=0;lineno<=${#parsedFile[@]};lineno++)); do
+    local line="${parsedFile[$lineno]}"
     local color_line="${parsedColorFile[$lineno]}"
 
     # treat each char by char
