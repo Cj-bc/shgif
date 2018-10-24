@@ -43,7 +43,7 @@ Shgif::GenerateColoerdPicture() {
   File::SetColorFile "$color_file" "col_fore" "col_back"
 
   set -f
-  parsedColorFile=(${parsedColorFile[@]:2})
+  parsedColorFile=("${parsedColorFile[@]:2}")
   set +f
   # treat line by line
   for ((lineno=0;lineno<=${#parsedFile[@]};lineno++)); do
