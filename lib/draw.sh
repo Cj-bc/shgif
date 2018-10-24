@@ -83,6 +83,7 @@ Shgif::GenerateColoerdPicture() {
 
 
 # draw picture at <x> <y>
+# color file will be set automatically
 # @param <int x> <int y> <string file>
 Shgif::DrawAt() {
   local pos_x=$1
