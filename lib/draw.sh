@@ -2,7 +2,9 @@ File::ParseToArray() {
   file=$1
   declare -n ret=$2
   while IFS= read -r line; do
-    ret=(${ret[@]} "$line")
+    set -f
+    ret=("${ret[*]}" "$line")
+    set +f
   done < $file
 }
 
@@ -79,7 +81,9 @@ Shgif::GenerateColoerdPicture() {
     output+="\n"
   done
 
+  set -f
   echo "$output"
+  set +f
 }
 
 
@@ -95,11 +99,13 @@ Shgif::DrawAt() {
   tput civis # hide cursor
   tput cup $pos_y $pos_x
 
+  set -f
   while IFS= read -r line; do
-    echo -n "$line"
+    builtin echo -n "$line"
     i+=1
     tput cup $(( $pos_y + $i)) $pos_x
   done < <(echo $file)
+  set +f
 
   tput cnorm # appear cursor
 }
