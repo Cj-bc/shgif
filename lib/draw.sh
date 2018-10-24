@@ -28,7 +28,7 @@ File::SetColorFile() {
 Shgif::GenerateColoerdPicture() {
   local file=$1
   local -i i=1
-  local -a parsedFile=()
+  local -a parsedColorFile=()
   local output="" # this string will be return
   local color_file="${file%/*}/color/${file##*/}"
   local -A col_fore=() # contains key:value pair for foreground_color
@@ -39,10 +39,10 @@ Shgif::GenerateColoerdPicture() {
   File::ParseToArray $color_file parsedColorFile
   File::SetColorFile $color_file col_force col_back
 
-  parsedFile=(${parsedFile[@]:2})
+  parsedColorFile=(${parsedColorFile[@]:2})
   # treat line by line
-  for ((lineno=0;lineno<=${#parsedFile[@]};lineno++)); do
-    local line="${parsedFile[$lineno]}"
+  for ((lineno=0;lineno<=${#parsedColorFile[@]};lineno++)); do
+    local line="${parsedColorFile[$lineno]}"
     local color_line="${parsedColorFile[$lineno]}"
 
     # treat each char by char
