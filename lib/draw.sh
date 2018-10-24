@@ -95,9 +95,10 @@ Shgif::DrawAt() {
 
   while IFS= read -r line; do
     echo -n "$line"
-    tput cup $(( $pos_y + i)) $pos_x
     i+=1
+    tput cup $(( $pos_y + $i)) $pos_x
   done < <(echo $file)
 
   tput cnorm # appear cursor
 }
+
