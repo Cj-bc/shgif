@@ -38,9 +38,9 @@ Shgif::GenerateColoerdPicture() {
   local -A col_back=() # contains key:value pair for background_color
 
   # parse files into Array
-  File::ParseToArray $file parsedFile
-  File::ParseToArray $color_file parsedColorFile
-  File::SetColorFile $color_file col_force col_back
+  File::ParseToArray $file "parsedFile"
+  File::ParseToArray $color_file "parsedColorFile"
+  File::SetColorFile "$color_file" "col_fore" "col_back"
 
   set -f
   parsedColorFile=(${parsedColorFile[@]:2})
@@ -67,6 +67,7 @@ Shgif::GenerateColoerdPicture() {
         output+='$(tput sgr0)' # reset if other color is set
         output+="$ch"
       else
+        # TODO: Those codes below are not working for now
         if [[ "$ch_col" =~ "[${!col_fore[@]} | tr -d ' ']"  ]]; then
           expr='$(tput setaf'
           col_num="${col_fore[$ch_col]}"
