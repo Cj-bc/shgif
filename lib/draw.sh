@@ -11,15 +11,15 @@ File::SetColorFile() {
   local file=$1
   local -n fore_ref=$2
   local -n back_ref=$3
-  local col_fore="$(head -n1 $file | tr ',' '\n')"
-  local col_back="$(head -n2 $file | tail -n1 | tr ',' '\n')"
+  local col_fore="$(head -n1 $file )"
+  local col_back="$(head -n2 $file | tail -n1)"
 
   local line
-  while read line;do
+  while read -d ',' line;do
     fore_ref["${line%=*}"]="${line#*=}"
   done < <(echo $col_fore)
 
-  while read line;do
+  while read -d ',' line;do
     back_ref["${line%=*}"]="${line#*=}"
   done < <(echo $col_back)
 }
