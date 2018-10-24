@@ -2,7 +2,7 @@ File::ParseToArray() {
   file=$1
   declare -n ret=$2
   while IFS= read -r line; do
-    ret=(${lines[@]} "$line")
+    ret=(${ret[@]} "$line")
   done < $file
 }
 
