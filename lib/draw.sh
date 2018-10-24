@@ -27,10 +27,11 @@ File::SetColorFile() {
 # combine picture txt and color layer
 Shgif::GenerateColoerdPicture() {
   local file=$1
+  local color_file="${file%/*}/color/${file##*/}"
+  local output="" # this string will be return
   local -i i=1
   local -a parsedColorFile=()
-  local output="" # this string will be return
-  local color_file="${file%/*}/color/${file##*/}"
+  local -a parsedFile=()
   local -A col_fore=() # contains key:value pair for foreground_color
   local -A col_back=() # contains key:value pair for background_color
 
