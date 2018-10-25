@@ -42,7 +42,9 @@ hell    ooo     space test
 EOF
   run File::ParseToArray $tmp lines
 
-  [ "$(declare -p lines)" = 'declare -p lines=([0]="oneline here" [1]="2nd    one" [2]="hell    ooo     space test")' ]
+  [ "${lines[0]}" = "oneline here" ]
+  [ "${lines[1]}" = "2nd    one" ]
+  [ "${lines[2]}" = "hell    ooo     space test" ]
 }
 
 
