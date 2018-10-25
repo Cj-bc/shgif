@@ -68,16 +68,22 @@ Shgif::GenerateColoerdPicture() {
         output+="$ch"
       else
         # TODO: Those codes below are not working for now
-        if [[ "$ch_col" =~ "[${!col_fore[@]} | tr -d ' ']"  ]]; then
-          expr='$(tput setaf'
-          col_num="${col_fore[$ch_col]}"
-          output+="${expr} ${col_num})"
-        fi
-        if [[ "$ch_col" =~ "[${!col_back[@]} | tr -d ' ']"  ]]; then
-          expr='$(tput setbf'
-          col_num="${col_back[$ch_col]}"
-          output+="${expr} ${col_num})"
-        fi
+        for key in "${!col_fore[@]}"; do
+          if [ "$ch_col" = "$key" ]; then
+            [ "$DEBUG" -eq 1 ] && echo "In setaf: ${ch_col}" >> $debug_drawLog
+            expr='$(tput setaf'
+            col_num="${col_fore[$ch_col]}"
+            output+="${expr} ${col_num})"
+          fi
+        done
+        for key in "${!col_back[@]}"; do
+          if [ "$ch_col" = "$key" ]; then
+            [ "$DEBUG" -eq 1 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
+            expr='$(tput setbf'
+            col_num="${col_back[$ch_col]}"
+            output+="${expr} ${col_num})"
+          fi
+        done
         output+="$ch"
       fi
     done
