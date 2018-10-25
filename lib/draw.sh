@@ -17,12 +17,12 @@ File::SetColorFile() {
   local col_back="$(head -n2 $file | tail -n1)"
 
   local line
-    fore_ref["${line%=*}"]="${line#*=}"
   while read -rd ',' line;do
+    fore_ref[${line%=*}]="${line#*=}"
   done < <(echo "$col_fore")
 
-    back_ref["${line%=*}"]="${line#*=}"
   while read -rd ',' line;do
+    back_ref[${line%=*}]="${line#*=}"
   done < <(echo "$col_back")
 }
 
@@ -38,8 +38,8 @@ Shgif::GenerateColoerdPicture() {
   local -A col_back=() # contains key:value pair for background_color
 
   # parse files into Array
-  File::ParseToArray $file "parsedFile"
-  File::ParseToArray $color_file "parsedColorFile"
+  File::ParseToArray "$file" "parsedFile"
+  File::ParseToArray "$color_file" "parsedColorFile"
   File::SetColorFile "$color_file" 'col_fore' 'col_back'
 
   set -f
