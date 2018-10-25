@@ -18,8 +18,8 @@ setup() {
 }
 
 @test "testing File::SetColorFile" {
-  declare -A fore=()
-  declare -A back=()
+  local -A fore=()
+  local -A back=()
   cat <<EOF > $tmp
 B=245,G=2,
 W=255,
