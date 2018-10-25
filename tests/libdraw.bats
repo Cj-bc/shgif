@@ -24,7 +24,7 @@ setup() {
 B=245,G=2,
 W=255,
 EOF
-  File::SetColorFile $tmp fore back
+  DEBUG=1 File::SetColorFile $tmp fore back
 
   echo "fore: $(declare -p fore)" >&3
   echo "back: $(declare -p back)" >&3
@@ -40,7 +40,7 @@ oneline here
 2nd    one
 hell    ooo     space test
 EOF
-  run File::ParseToArray $tmp lines
+  DEBUG=1 File::ParseToArray $tmp lines
 
   [ "${lines[0]}" = "oneline here" ]
   [ "${lines[1]}" = "2nd    one" ]
