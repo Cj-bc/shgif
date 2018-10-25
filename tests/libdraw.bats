@@ -24,13 +24,13 @@ setup() {
 B=245,G=2,
 W=255,
 EOF
-  run File::SetColorFile $tmp fore back
+  File::SetColorFile $tmp fore back
 
   echo "fore: $(declare -p fore)" >&3
   echo "back: $(declare -p back)" >&3
   [ "${fore[B]}" = "245" ]
   [ "${fore[G]}" = "2" ]
-  [ "$(declare -p back)" = "declare -A back=([W]=255)" ]
+  [ "$(back[W])" = "255" ]
 }
 
 @test "testing File::ParseToArray" {
