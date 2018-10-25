@@ -21,8 +21,8 @@ setup() {
   declare -A fore=()
   declare -A back=()
   cat <<EOF > $tmp
-B=245,G=2
-W=255
+B=245,G=2,
+W=255,
 EOF
   run File::SetColorFile $tmp fore back
 
