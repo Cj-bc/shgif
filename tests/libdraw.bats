@@ -26,6 +26,8 @@ W=255,
 EOF
   run File::SetColorFile $tmp fore back
 
+  echo "fore: $(declare -p fore)" >&3
+  echo "back: $(declare -p back)" >&3
   [ "${fore[B]}" = "245" ]
   [ "${fore[G]}" = "2" ]
   [ "$(declare -p back)" = "declare -A back=([W]=255)" ]
