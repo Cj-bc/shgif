@@ -109,13 +109,11 @@ Shgif::DrawAt() {
   tput civis # hide cursor
   tput cup "$pos_y" "$pos_x"
 
-  set -f
   while IFS= read -r line; do
-    eval 'echo -e "' "$line" '"'
+    eval 'echo "' "$line" '"'
     i+=1
     tput cup $(( pos_y + i)) "$pos_x"
   done < <(echo -e "$file")
-  set +f
 
   tput cnorm # appear cursor
 }
