@@ -111,7 +111,7 @@ Shgif::DrawAt() {
 
   set -f
   while IFS= read -r line; do
-    builtin echo -n "$line"
+    eval 'echo -e "' "$line" '"'
     i+=1
     tput cup $(( pos_y + i)) "$pos_x"
   done < <(echo -e "$file")
