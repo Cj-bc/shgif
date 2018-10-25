@@ -4,7 +4,7 @@ File::ParseToArray() {
   set -f
   while IFS= read -r line; do
     ret=("${ret[@]}" "$line")
-  done < $file
+  done < "$file"
   set +f
 }
 
@@ -17,13 +17,13 @@ File::SetColorFile() {
   local col_back="$(head -n2 $file | tail -n1)"
 
   local line
-  while read -d ',' line;do
     fore_ref["${line%=*}"]="${line#*=}"
-  done < <(echo $col_fore)
+  while read -rd ',' line;do
+  done < <(echo "$col_fore")
 
-  while read -d ',' line;do
     back_ref["${line%=*}"]="${line#*=}"
-  done < <(echo $col_back)
+  while read -rd ',' line;do
+  done < <(echo "$col_back")
 }
 
 # combine picture txt and color layer
@@ -40,7 +40,7 @@ Shgif::GenerateColoerdPicture() {
   # parse files into Array
   File::ParseToArray $file "parsedFile"
   File::ParseToArray $color_file "parsedColorFile"
-  File::SetColorFile "$color_file" "col_fore" "col_back"
+  File::SetColorFile "$color_file" 'col_fore' 'col_back'
 
   set -f
   parsedColorFile=("${parsedColorFile[@]:2}")
@@ -81,7 +81,7 @@ Shgif::GenerateColoerdPicture() {
         output+="$ch"
       fi
     done
-    output+="\n"
+    output+="\\n"
   done
 
   set -f
@@ -96,18 +96,19 @@ Shgif::GenerateColoerdPicture() {
 Shgif::DrawAt() {
   local pos_x=$1
   local pos_y=$2
-  local file=$(Shgif::GenerateColoerdPicture $3)
+  local file
+  file=$(Shgif::GenerateColoerdPicture "$3")
   local -i i=1
 
   tput civis # hide cursor
-  tput cup $pos_y $pos_x
+  tput cup "$pos_y" "$pos_x"
 
   set -f
   while IFS= read -r line; do
     builtin echo -n "$line"
     i+=1
-    tput cup $(( $pos_y + $i)) $pos_x
-  done < <(echo -e $file)
+    tput cup $(( pos_y + i)) "$pos_x"
+  done < <(echo -e "$file")
   set +f
 
   tput cnorm # appear cursor
