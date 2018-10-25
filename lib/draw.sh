@@ -79,7 +79,7 @@ Shgif::GenerateColoerdPicture() {
         for key in "${!col_back[@]}"; do
           if [ "$ch_col" = "$key" ]; then
             [ "$DEBUG" -eq 1 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
-            expr='$(tput setbf'
+            expr='$(tput setab'
             col_num="${col_back[$ch_col]}"
             output+="${expr} ${col_num})"
           fi
