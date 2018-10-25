@@ -30,7 +30,7 @@ EOF
   echo "back: $(declare -p back)" >&3
   [ "${fore[B]}" = "245" ]
   [ "${fore[G]}" = "2" ]
-  [ "$(back[W])" = "255" ]
+  [ "${back[W]}" = "255" ]
 }
 
 @test "testing File::ParseToArray" {
