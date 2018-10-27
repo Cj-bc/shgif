@@ -115,8 +115,8 @@ Shgif::DrawAt() {
 
   local -i i=1
   for line in "${file[@]}"; do
-    [ ${DEBUG:-0} -eq 1 ] && eval 'echo -E "' $line '"' >> $debug_stdout
-    eval 'echo -E "' $line '"'
+    [ ${DEBUG:-0} -eq 1 ] && eval 'echo "' ${line//\\/\\\\} '"' >> $debug_stdout
+    eval 'echo -E "' ${line//\\/\\\\} '"'
     i+=1
     tput cup $(( pos_y + i)) "$pos_x"
   done
