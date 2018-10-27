@@ -13,17 +13,17 @@ File::SetColorFile() {
   local file=$1
   local -n fore_ref=$2
   local -n back_ref=$3
-  local fore="$(head -n1 $file )"
-  local back="$(head -n2 $file | tail -n1)"
+  local lfore="$(head -n1 $file )"
+  local lback="$(head -n2 $file | tail -n1)"
 
   local line
   while read -rd ',' line;do
     fore_ref[${line%=*}]="${line#*=}"
-  done < <(echo "$fore")
+  done < <(echo "$lfore")
 
   while read -rd ',' line;do
     back_ref[${line%=*}]="${line#*=}"
-  done < <(echo "$back")
+  done < <(echo "$lback")
 }
 
 # combine picture txt and color layer
