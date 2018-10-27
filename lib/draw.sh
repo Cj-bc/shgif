@@ -1,7 +1,8 @@
 File::ParseToArray() {
-  file=$1
-  declare -n ret=$2
+  local file=$1
+  local -n ret=$2
   set -f
+  local line
   while IFS= read -r line; do
     ret=("${ret[@]}" "$line")
   done < "$file"
