@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 File::ParseToArray() {
   local file=$1
   local -n ret=$2
