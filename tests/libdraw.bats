@@ -24,7 +24,7 @@ setup() {
 B=245,G=2,
 W=255,
 EOF
-  DEBUG=1 File::SetColorFile $tmp fore back
+  DEBUG=2 File::SetColorFile "$tmp" 'fore' 'back'
 
   echo "fore: $(declare -p fore)" >&3
   echo "back: $(declare -p back)" >&3
