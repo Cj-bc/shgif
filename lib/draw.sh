@@ -30,7 +30,7 @@ File::SetColorFile() {
 Shgif::GenerateColoerdPicture() {
   local file=$1
   local color_file="${file%/*}/color/${file##*/}"
-  local output="" # this string will be return
+  local -n output="$2" # this will be returned
   local -i i=1
   local -a parsedColorFile=()
   local -a parsedFile=()
@@ -40,13 +40,14 @@ Shgif::GenerateColoerdPicture() {
   # parse files into Array
   File::ParseToArray "$file" "parsedFile"
   File::ParseToArray "$color_file" "parsedColorFile"
-  File::SetColorFile "$color_file" 'col_fore' 'col_back'
+  File::SetColorFile "$color_file" col_fore col_back
 
   set -f
   parsedColorFile=("${parsedColorFile[@]:2}")
   set +f
   # treat line by line
   for ((lineno=0;lineno<=${#parsedFile[@]};lineno++)); do
+    local output_line=""
     local line="${parsedFile[$lineno]}"
     local color_line="${parsedColorFile[$lineno]}"
 
@@ -64,8 +65,8 @@ Shgif::GenerateColoerdPicture() {
       # or with no color:
       #   output+="$(tput sgr0)<string char>"
       if [[ "$ch" = "$ch_col" ]];then
-        output+='$(tput sgr0)' # reset if other color is set
-        output+="$ch"
+        output_line+='$(tput sgr0)' # reset if other color is set
+        output_line+="$ch"
       else
         # TODO: Those codes below are not working for now
         for key in "${!col_fore[@]}"; do
@@ -73,7 +74,7 @@ Shgif::GenerateColoerdPicture() {
             [ "$DEBUG" -eq 1 ] && echo "In setaf: ${ch_col}" >> $debug_drawLog
             expr='$(tput setaf'
             col_num="${col_fore[$ch_col]}"
-            output+="${expr} ${col_num})"
+            output_line+="${expr} ${col_num})"
           fi
         done
         for key in "${!col_back[@]}"; do
@@ -81,17 +82,16 @@ Shgif::GenerateColoerdPicture() {
             [ "$DEBUG" -eq 1 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
             expr='$(tput setab'
             col_num="${col_back[$ch_col]}"
-            output+="${expr} ${col_num})"
+            output_line+="${expr} ${col_num})"
           fi
         done
-        output+="$ch"
+        output_line+="$ch"
       fi
     done
-    output+="\\n"
+    output=("${output[@]}" "$output_line")
   done
 
   set -f
-  echo "$output"
   set +f
 }
 
@@ -102,19 +102,22 @@ Shgif::GenerateColoerdPicture() {
 Shgif::DrawAt() {
   local pos_x=$1
   local pos_y=$2
-  local file
-  file=$(Shgif::GenerateColoerdPicture "$3")
-  local -i i=1
+  local -a file=()
+
+  # generate color mapped file
+  Shgif::GenerateColoerdPicture "$3" 'file'
 
   tput civis # hide cursor
   tput cup "$pos_y" "$pos_x"
+  [ ${DEBUG:-0} -eq 1 ] && eval 'echo -E "File[0]: ' ${file[0]} '"' >> $debug_stdout
 
-  while IFS= read -r line; do
-    eval 'echo "' "$line" '"'
+  local -i i=1
+  for line in "${file[@]}"; do
+    [ ${DEBUG:-0} -eq 1 ] && eval 'echo -E "' $line '"' >> $debug_stdout
+    eval 'echo -E "' $line '"'
     i+=1
     tput cup $(( pos_y + i)) "$pos_x"
-  done < <(echo -e "$file")
+  done
 
   tput cnorm # appear cursor
 }
-
