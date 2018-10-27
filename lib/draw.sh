@@ -68,6 +68,8 @@ Shgif::GenerateColoerdPicture() {
       #   output+="$(tput sgr0)<string char>"
       if [[ "$ch" = "$ch_col" ]];then
         output_line+='$(tput sgr0)' # reset if other color is set
+        ch=${ch/\\/\\\\}
+        ch=${ch/\$/\\\$}
         output_line+="$ch"
       else
         # TODO: Those codes below are not working for now
@@ -87,6 +89,8 @@ Shgif::GenerateColoerdPicture() {
             output_line+="${expr} ${col_num})"
           fi
         done
+        ch=${ch/\\/\\\\} # escape letters
+        ch=${ch/\$/\\\$} # escape letters
         output_line+="$ch"
       fi
     done
@@ -115,8 +119,8 @@ Shgif::DrawAt() {
 
   local -i i=1
   for line in "${file[@]}"; do
-    [ ${DEBUG:-0} -eq 1 ] && eval 'echo "' ${line//\\/\\\\} '"' >> $debug_stdout
-    eval 'echo -E "' ${line//\\/\\\\} '"'
+    [ ${DEBUG:-0} -eq 1 ] && eval 'echo "' "$line" '"' >> $debug_stdout
+    eval 'echo -E "' "$line" '"'
     i+=1
     tput cup $(( pos_y + i)) "$pos_x"
   done
