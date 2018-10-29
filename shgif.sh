@@ -8,12 +8,14 @@
 # @(#) ver1.1
 # @(#) for bash4 or higher
 
+source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/deps/bash-oo-framework/lib/oo-bootstrap.sh"
+import ../../bin/libtar
+ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
+source ${ex_path}/lib/draw.sh
+
 Shigif.Init() {
-  local ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
   local file=$1
   declare -g file_path
-  source ${ex_path}/lib/draw.sh
-  source ${ex_path}/lib/tar.sh
 
   [ -f $file ] || { echo 'file does not exist.' 1>&2; exit 10; }
   tput clear
@@ -45,6 +47,7 @@ Shgif.main() {
   tput cud 3
   tput cnorm
   [[ "$file_path" =~ /tmp/sh_tar_unpack.* ]] && rm -r ${file_path%/*}
+  return 0
 }
 
 Shgif.main $1
