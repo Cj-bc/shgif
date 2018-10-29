@@ -10,6 +10,7 @@
 
 source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/deps/bash-oo-framework/lib/oo-bootstrap.sh"
 import ../../bin/libtar
+import ../../bin/libfile
 ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
 source ${ex_path}/lib/draw.sh
 
