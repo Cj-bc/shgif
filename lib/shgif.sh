@@ -1,21 +1,15 @@
 #!/usr/bin/env bash
+#
+# copyright (c) 2018 Cj-bc
+# This software is released under MIT License
+#
+
 # DEBUG options
 debug_stdout="stdout.log"
 debug_drawLog="draw_log.log"
 
-File::ParseToArray() {
-  local file=$1
-  local -n ret=$2
-  set -f
-  local line
-  while IFS= read -r line; do
-    ret=("${ret[@]}" "$line")
-  done < "$file"
-  set +f
-}
-
 # @param <string file_path> <string Aarray var name> <string Aarray var name>
-File::SetColorFile() {
+Shgif::SetColorFile() {
   local file=$1
   local -n fore_ref=$2
   local -n back_ref=$3
@@ -51,7 +45,7 @@ Shgif::GenerateColoerdPicture() {
   # parse files into Array
   File::ParseToArray "$lfile" "parsedFile"
   File::ParseToArray "$color_file" "parsedColorFile"
-  File::SetColorFile "$color_file" col_fore col_back
+  Shgif::SetColorFile "$color_file" col_fore col_back
   [ ${DEBUG:-0} -eq 1 ] && echo "col_fore1 is: $(declare -p col_fore)" >> $debug_drawLog
   [ ${DEBUG:-0} -eq 1 ] && echo "col_back1 is: $(declare -p col_back)" >> $debug_drawLog
 
