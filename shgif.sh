@@ -47,7 +47,7 @@ Shgif.main() {
 
   tput cud 3
   tput cnorm
-  [[ "$file_path" =~ /tmp/sh_tar_unpack.* ]] && rm -r ${file_path%/*}
+  [[ "$file_path" =~ /tmp/sh_tar_unpack.* ]] && rm -r ${file_path}
   return 0
 }
 
