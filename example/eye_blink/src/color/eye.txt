@@ -1,0 +1,13 @@
+
+B=231,W=235,
+      ========
+    ==BBBBBBBB==
+  ==BBBBBBBBBBBB==
+==BBBB*B*BBBBBBBBB==
+==BBBBB**    BBBBB==
+==BBBB  *      BBB==
+==BB   WWWWWW   BB==
+==   WWWWWWWWWW   ==
+  ==WWWWWWWWWWWW==
+    ==WWWWWWWW==
+      ========
