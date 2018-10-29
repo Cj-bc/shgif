@@ -12,7 +12,7 @@ source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/deps/bash-oo-framework/lib/oo-boot
 import ../../bin/libtar
 import ../../bin/libfile
 ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
-source ${ex_path}/lib/draw.sh
+source ${ex_path}/lib/shgif.sh
 
 Shigif.Init() {
   local file=$1
