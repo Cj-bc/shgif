@@ -41,6 +41,7 @@ Shgif::GenerateColoerdPicture() {
   local -a parsedFile=()
   local -A col_fore=() # contains key:value pair for foreground_color
   local -A col_back=() # contains key:value pair for background_color
+  local -A prev_param=([fore]="" [back]="") # contains previous char's color infomation
 
   # parse files into Array
   File::ParseToArray "$lfile" "parsedFile"
@@ -72,26 +73,37 @@ Shgif::GenerateColoerdPicture() {
       # or with no color:
       #   output+="$(tput sgr0)<string char>"
       if [[ "$ch" = "$ch_col" ]];then
-        output_line+='$(tput sgr0)' # reset if other color is set
+        # if previous char have any color infomation, reset it.
+        if [[ "${prev_param[fore]}" != "" || "${prev_param[back]}" != "" ]]; then
+          output_line+='$(tput sgr0)' # reset if other color is set
+          prev_param=([fore]="" [back]="")
+        fi
         ch=${ch/\\/\\\\}
         ch=${ch/\$/\\\$}
         output_line+="$ch"
       else
-        # TODO: Those codes below are not working for now
+        # 1. check foreground color
+        # 2. check background color
         for key in "${!col_fore[@]}"; do
           if [ "$ch_col" = "$key" ]; then
-            [ ${DEBUG:-0} -eq 1 ] && echo "In setaf: ${ch_col}" >> $debug_drawLog
-            expr='$(tput setaf'
-            col_num="${col_fore[$ch_col]}"
-            output_line+="${expr} ${col_num})"
+            if [[ "$ch_col" != "${prev_param[fore]}" ]]; then
+              [ ${DEBUG:-0} -eq 1 ] && echo "In setaf: ${ch_col}" >> $debug_drawLog
+              expr='$(tput setaf'
+              col_num="${col_fore[$ch_col]}"
+              output_line+="${expr} ${col_num})"
+              prev_param[fore]="$ch_col"
+            fi
           fi
         done
         for key in "${!col_back[@]}"; do
           if [ "$ch_col" = "$key" ]; then
-            [ ${DEBUG:-0} -eq 2 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
-            expr='$(tput setab'
-            col_num="${col_back[$ch_col]}"
-            output_line+="${expr} ${col_num})"
+            if [[ "$ch_col" != "${prev_param[back]}" ]]; then
+              [ ${DEBUG:-0} -eq 2 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
+              expr='$(tput setab'
+              col_num="${col_back[$ch_col]}"
+              output_line+="${expr} ${col_num})"
+              prev_param[back]="$ch_col"
+            fi
           fi
         done
         ch=${ch/\\/\\\\} # escape letters
