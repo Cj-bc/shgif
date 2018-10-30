@@ -1,0 +1,8 @@
+{
+  "name": "libtar",
+  "version": "1.0",
+  "description": "bash library to treat tar file",
+  "install": "install -b libtar.sh ${PREFIX:-/usr/local}/bin/libtar",
+  "scripts": [ "libtar.sh" ]
+}
+
