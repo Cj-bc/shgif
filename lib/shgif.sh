@@ -18,17 +18,17 @@ Shgif::SetColorFile() {
 
   local line
   while read -rd ',' line;do
-    [ ${DEBUG:-0} -eq 2 ] && echo ecexuted >&3 # DEBUG
-    [ ${DEBUG:-0} -eq 2 ] && echo "line: $line" >&3 # DEBUG
+    [ "${DEBUG:-0}" -eq 2 ] && echo ecexuted >&3 # DEBUG
+    [ "${DEBUG:-0}" -eq 2 ] && echo "line: $line" >&3 # DEBUG
     fore_ref[${line%=*}]="${line#*=}"
   done < <(echo "$lfore")
-  [ ${DEBUG:-0} -eq 2 ] && echo "fore_ref[G]: ${fore_ref[G]}" >&3 # DEBUG
-  [ ${DEBUG:-0} -eq 2 ] && echo "fore_ref[B]: ${fore_ref[B]}" >&3 # DEBUG
+  [ "${DEBUG:-0}" -eq 2 ] && echo "fore_ref[G]: ${fore_ref[G]}" >&3 # DEBUG
+  [ "${DEBUG:-0}" -eq 2 ] && echo "fore_ref[B]: ${fore_ref[B]}" >&3 # DEBUG
 
   while read -rd ',' line;do
     back_ref[${line%=*}]="${line#*=}"
   done < <(echo "$lback")
-  [ ${DEBUG:-0} -eq 2 ] && echo "back_ref[W]: ${back_ref[W]}" >&3 # DEBUG
+  [ "${DEBUG:-0}" -eq 2 ] && echo "back_ref[W]: ${back_ref[W]}" >&3 # DEBUG
 }
 
 # combine picture txt and color layer
@@ -47,8 +47,8 @@ Shgif::GenerateColoerdPicture() {
   File::ParseToArray "$lfile" "parsedFile"
   File::ParseToArray "$color_file" "parsedColorFile"
   Shgif::SetColorFile "$color_file" col_fore col_back
-  [ ${DEBUG:-0} -eq 1 ] && echo "col_fore1 is: $(declare -p col_fore)" >> $debug_drawLog
-  [ ${DEBUG:-0} -eq 1 ] && echo "col_back1 is: $(declare -p col_back)" >> $debug_drawLog
+  [ "${DEBUG:-0}" -eq 1 ] && echo "col_fore1 is: $(declare -p col_fore)" >> $debug_drawLog
+  [ "${DEBUG:-0}" -eq 1 ] && echo "col_back1 is: $(declare -p col_back)" >> $debug_drawLog
 
   set -f
   parsedColorFile=("${parsedColorFile[@]:2}")
@@ -87,7 +87,7 @@ Shgif::GenerateColoerdPicture() {
         for key in "${!col_fore[@]}"; do
           if [ "$ch_col" = "$key" ]; then
             if [[ "$ch_col" != "${prev_param[fore]}" ]]; then
-              [ ${DEBUG:-0} -eq 1 ] && echo "In setaf: ${ch_col}" >> $debug_drawLog
+              [ "${DEBUG:-0}" -eq 1 ] && echo "In setaf: ${ch_col}" >> $debug_drawLog
               expr='$(tput setaf'
               col_num="${col_fore[$ch_col]}"
               output_line+="${expr} ${col_num})"
@@ -98,7 +98,7 @@ Shgif::GenerateColoerdPicture() {
         for key in "${!col_back[@]}"; do
           if [ "$ch_col" = "$key" ]; then
             if [[ "$ch_col" != "${prev_param[back]}" ]]; then
-              [ ${DEBUG:-0} -eq 2 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
+              [ "${DEBUG:-0}" -eq 2 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
               expr='$(tput setab'
               col_num="${col_back[$ch_col]}"
               output_line+="${expr} ${col_num})"
@@ -116,7 +116,7 @@ Shgif::GenerateColoerdPicture() {
 
   # DEBUG
   set -f
-  [ ${DEBUG:-0} -eq 1 ] && {
+  [ "${DEBUG:-0}" -eq 1 ] && {
   echo "parsedColorFile is: $(declare -p parsedColorFile)"
   echo "parsedFile is: $(declare -p parsedFile)"
   echo "col_fore is: $(declare -p col_fore)"
@@ -125,7 +125,6 @@ Shgif::GenerateColoerdPicture() {
   echo "output: $(declare -p file)"
   } >> $debug_drawLog
 
-  [ ${DEBUG:-0} -eq 1 ] &&  >> $debug_drawLog
   set +f
 }
 
@@ -143,11 +142,11 @@ Shgif::DrawAt() {
 
   tput civis # hide cursor
   tput cup "$pos_y" "$pos_x"
-  [ ${DEBUG:-0} -eq 1 ] && eval 'echo "File[0]: ' ${file[0]} '"' >> $debug_stdout
+  [ "${DEBUG:-0}" -eq 1 ] && eval 'echo "File[0]: ' ${file[0]} '"' >> $debug_stdout
 
   local -i i=1
   for line in "${file[@]}"; do
-    [ ${DEBUG:-0} -eq 1 ] && eval 'echo "' "$line" '"' >> $debug_stdout
+    [ "${DEBUG:-0}" -eq 1 ] && eval 'echo "' "$line" '"' >> $debug_stdout
     eval 'echo -E "' "$line" '"'
     i+=1
     tput cup $(( pos_y + i)) "$pos_x"
