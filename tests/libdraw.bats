@@ -33,21 +33,6 @@ EOF
   [ "${back[W]}" = "255" ]
 }
 
-@test "testing File::ParseToArray" {
-  declare -a lines=()
-  cat <<EOF > $tmp
-oneline here
-2nd    one
-hell    ooo     space test
-EOF
-  DEBUG=1 File::ParseToArray $tmp lines
-
-  [ "${lines[0]}" = "oneline here" ]
-  [ "${lines[1]}" = "2nd    one" ]
-  [ "${lines[2]}" = "hell    ooo     space test" ]
-}
-
-
 teardown() {
   rm $tmp
 }
