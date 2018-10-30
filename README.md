@@ -14,6 +14,22 @@ shgif is one of the simplest gif-like player made by ASCIIs
   * a real-gif player
   * no-gif supported
 
+# installation
+
+you can use homebrew and bpkg[WIP] to install `shgif`:
+
+```bash
+$ brew tap Cj-bc/shgif
+$ brew install shgif
+```
+
+```bash
+$ bpkg install -g Cj-bc/shgif
+```
+
+`bpkg` support is in progress...
+
+
 # usage
 
 ```bash

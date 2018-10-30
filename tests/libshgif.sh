@@ -2,7 +2,7 @@
 
 
 setup() {
-  source "${BATS_TEST_DIRNAME}/../lib/draw.sh"
+  source "${BATS_TEST_DIRNAME}/../lib/shgif.sh"
   tmp=$(mktemp "SetColorFileTest.XXXXXXX")
 
 }
@@ -17,14 +17,14 @@ setup() {
   [ "${hash[two]}" = "2" ]
 }
 
-@test "testing File::SetColorFile" {
+@test "testing Shgif::SetColorFile" {
   local -A fore=()
   local -A back=()
   cat <<EOF > $tmp
 B=245,G=2,
 W=255,
 EOF
-  DEBUG=2 File::SetColorFile "$tmp" 'fore' 'back'
+  DEBUG=2 Shgif::SetColorFile "$tmp" 'fore' 'back'
 
   echo "fore: $(declare -p fore)" >&3
   echo "back: $(declare -p back)" >&3
@@ -32,21 +32,6 @@ EOF
   [ "${fore[G]}" = "2" ]
   [ "${back[W]}" = "255" ]
 }
-
-@test "testing File::ParseToArray" {
-  declare -a lines=()
-  cat <<EOF > $tmp
-oneline here
-2nd    one
-hell    ooo     space test
-EOF
-  DEBUG=1 File::ParseToArray $tmp lines
-
-  [ "${lines[0]}" = "oneline here" ]
-  [ "${lines[1]}" = "2nd    one" ]
-  [ "${lines[2]}" = "hell    ooo     space test" ]
-}
-
 
 teardown() {
   rm $tmp
