@@ -5,7 +5,7 @@
 # copyright (c) 2018 Cj-bc
 # This software is released under MIT License
 #
-# @(#) ver1.2.0
+# @(#) ver1.3.0
 # @(#) for bash4 or higher
 
 source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/deps/bash-oo-framework/lib/oo-bootstrap.sh"
