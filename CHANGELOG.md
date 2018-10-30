@@ -3,6 +3,13 @@
 CHANGELOG is written in [keepchangelog](https://keepachangelog.com/en/1.0.0/) format
 Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://www.softantenna.com/wp/software/keep-a-changeloag/)
 
+## [1.2.0] - 2018-10-30
+### Added
+  - color support
+  - close #3/#4
+### Fix
+  - follow shellcheck
+
 ## [1.1] - 2018-10-08
 ### Added
   - introduce rule for CHANGELOG
