@@ -3,6 +3,13 @@
 CHANGELOG is written in [keepchangelog](https://keepachangelog.com/en/1.0.0/) format
 Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://www.softantenna.com/wp/software/keep-a-changeloag/)
 
+## WIP
+  - bpkg support
+
+## [1.3.0] - 2018-10-30
+### Added
+  - homebrew support
+
 ## [1.2.0] - 2018-10-30
 ### Added
   - color support
