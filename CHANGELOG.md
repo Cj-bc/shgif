@@ -6,6 +6,10 @@ Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://ww
 ## WIP
   - bpkg support
 
+## [1.4.2] - 2018-11-11
+### Fix
+  - Remove bug that can't treat background color code
+
 ## [1.4.1] - 2018-11-11
 ### Change
   - Write CHANGELOG for 1.4.0
