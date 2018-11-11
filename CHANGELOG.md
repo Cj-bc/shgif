@@ -6,6 +6,10 @@ Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://ww
 ## WIP
   - bpkg support
 
+## [1.4.3] - 2018-11-11
+### Fix
+  - Remove bug that adds empty line on the second line for each picture
+
 ## [1.4.2] - 2018-11-11
 ### Fix
   - Remove bug that can't treat background color code
