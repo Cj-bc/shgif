@@ -1,0 +1,4 @@
+B=201,
+B=blink,V=bold,
+BBBB should be blinked!!!
+VVVV should be bold
