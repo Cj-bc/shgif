@@ -85,6 +85,9 @@ The first/second line in color layer define the pair of color and keyword.
 * First line: setting for foreground color
 * Second line: setting for background color
 
+*Note*: you can use `blink`/`bold` keywords in both lines.
+        When you use this, the specified characters will be blink/bold.
+
 ```
 r=10
 B=231,W=235
