@@ -89,7 +89,7 @@ The first/second line in color layer define the pair of color and keyword.
         When you use this, the specified characters will be blink/bold.
 
 ```
-r=10
+r=10,n=blink
 B=231,W=235
 ```
 
