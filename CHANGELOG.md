@@ -6,6 +6,13 @@ Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://ww
 ## WIP
   - bpkg support
 
+## [1.4.1] - 2018-11-11
+### Change
+  - Write CHANGELOG for 1.4.0
+## [1.4.0] - 2018-11-11
+### Added
+  - Tput's `blink`/`bold` option are supported
+
 ## [1.3.0] - 2018-10-30
 ### Added
   - homebrew support
