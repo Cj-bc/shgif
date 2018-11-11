@@ -1,11 +1,12 @@
 {
   "name": "shgif",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "ASCII gif player",
   "install": "install -b shgif.sh ${PREFIX:-/usr/local}/bin/shgif",
   "scripts": [ "shgif.sh", "lib/shgif.sh" ],
-  "files": [ "tests", "deps" ],
+  "files": [ "tests/*" ],
   "depedencies": { "Cj-bc/libfile": "1.0",
-                   "Cj-bc/libtar" : "1.0" }
+                   "Cj-bc/libtar" : "1.0",
+                   "nieani/bash-oo-framework": "2.1.0" }
 }
 
