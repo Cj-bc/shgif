@@ -120,7 +120,7 @@ Shgif::GenerateColoerdPicture() {
               [ "${DEBUG:-0}" -eq 2 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
               expr='$(tput setab'
               col_num="${col_back[$ch_col]}"
-              if [[ "$ch_col" = [0-9]* ]]; then
+              if [[ "$col_num" = [0-9]* ]]; then
                 output_line+="${expr} ${col_num})"
               else
                 output_line+="$(tput ${col_num})"
