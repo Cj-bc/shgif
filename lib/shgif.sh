@@ -20,13 +20,28 @@ Shgif::SetColorFile() {
   while read -rd ',' line;do
     [ "${DEBUG:-0}" -eq 2 ] && echo ecexuted >&3 # DEBUG
     [ "${DEBUG:-0}" -eq 2 ] && echo "line: $line" >&3 # DEBUG
-    fore_ref[${line%=*}]="${line#*=}"
+    # avoid non-exist tput subcommand
+    if [[ ! "${line#*=}" = [0-9]* ]]; then
+      case "${line#*=}" in
+        "blink"|"bold" ) fore_ref[${line%=*}]="${line#*=}";;
+        * ) :;
+      esac
+    else
+      fore_ref[${line%=*}]="${line#*=}"
+    fi
   done < <(echo "$lfore")
   [ "${DEBUG:-0}" -eq 2 ] && echo "fore_ref[G]: ${fore_ref[G]}" >&3 # DEBUG
   [ "${DEBUG:-0}" -eq 2 ] && echo "fore_ref[B]: ${fore_ref[B]}" >&3 # DEBUG
 
   while read -rd ',' line;do
-    back_ref[${line%=*}]="${line#*=}"
+    if [[ ! "${line#*=}" = [0-9]* ]]; then
+      case "${line#*=}" in
+        "blink"|"bold" ) back_ref[${line%=*}]="${line#*=}";;
+        * ) :;
+      esac
+    else
+      back_ref[${line%=*}]="${line#*=}"
+    fi
   done < <(echo "$lback")
   [ "${DEBUG:-0}" -eq 2 ] && echo "back_ref[W]: ${back_ref[W]}" >&3 # DEBUG
 }
@@ -90,7 +105,11 @@ Shgif::GenerateColoerdPicture() {
               [ "${DEBUG:-0}" -eq 1 ] && echo "In setaf: ${ch_col}" >> $debug_drawLog
               expr='$(tput setaf'
               col_num="${col_fore[$ch_col]}"
-              output_line+="${expr} ${col_num})"
+              if [[ "$col_num" = [0-9]* ]]; then
+                output_line+="${expr} ${col_num})"
+              else
+                output_line+="$(tput ${col_num})"
+              fi
               prev_param[fore]="$ch_col"
             fi
           fi
@@ -101,7 +120,11 @@ Shgif::GenerateColoerdPicture() {
               [ "${DEBUG:-0}" -eq 2 ] && echo "In setbf: ${ch_col}" >> $debug_drawLog
               expr='$(tput setab'
               col_num="${col_back[$ch_col]}"
-              output_line+="${expr} ${col_num})"
+              if [[ "$ch_col" = [0-9]* ]]; then
+                output_line+="${expr} ${col_num})"
+              else
+                output_line+="$(tput ${col_num})"
+              fi
               prev_param[back]="$ch_col"
             fi
           fi
