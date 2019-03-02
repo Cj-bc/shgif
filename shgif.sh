@@ -8,9 +8,9 @@
 # @(#) ver1.4.3
 # @(#) for bash4 or higher
 
-source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/deps/bash-oo-framework/lib/oo-bootstrap.sh"
-import ../../bin/libtar
-import ../../bin/libfile
+source "$(blib --prefix)/bash-oo-framework/lib/oo-bootstrap.sh"
+import blib:libtar
+import blib:libfile
 ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
 source ${ex_path}/lib/shgif.sh
 
