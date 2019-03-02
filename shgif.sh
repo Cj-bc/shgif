@@ -5,12 +5,12 @@
 # copyright (c) 2018 Cj-bc
 # This software is released under MIT License
 #
-# @(#) ver1.4.3
+# @(#) ver1.5.0
 # @(#) for bash4 or higher
 
-source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/deps/bash-oo-framework/lib/oo-bootstrap.sh"
-import ../../bin/libtar
-import ../../bin/libfile
+source "$(blib --prefix)/bash-oo-framework/lib/oo-bootstrap.sh"
+import blib:libtar
+import blib:libfile
 ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
 source ${ex_path}/lib/shgif.sh
 

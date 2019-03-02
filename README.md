@@ -30,6 +30,14 @@ $ bpkg install -g Cj-bc/shgif
 `bpkg` support is in progress...
 
 
+## dependencies
+
+| name | description |
+|:-:|:-:|
+| [Cj-bc/blib](https://github.com/Cj-bc/blib)       | a bash library manager |
+| [Cj-bc/libtar](https://github.com/Cj-bc/libtar)   | treat tar unpack/pack  |
+| [Cj-bc/libfile](https://github.com/Cj-bc/libfile) | parse files into array |
+
 # usage
 
 ```bash

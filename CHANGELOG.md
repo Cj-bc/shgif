@@ -6,6 +6,13 @@ Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://ww
 ## WIP
   - bpkg support
 
+## [1.5.0] - 2019-03-02
+### Changed
+  * Use blib to manage libraries
+
+### Fixed
+  * Can't find library
+
 ## [1.4.3] - 2018-11-11
 ### Fix
   - Remove bug that adds empty line on the second line for each picture
