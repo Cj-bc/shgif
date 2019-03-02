@@ -1,8 +1,0 @@
-{
-  "name": "libfile",
-  "version": "1.0",
-  "description": "library of file-related functions",
-  "install": "install -b libfile.sh ${PREFIX:-/usr/local}/bin/libfile",
-  "scripts": [ "libfile.sh" ]
-}
-
