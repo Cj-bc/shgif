@@ -5,14 +5,13 @@
 # copyright (c) 2018 Cj-bc
 # This software is released under MIT License
 #
-# @(#) ver1.5.0
+# @(#) ver1.5.1
 # @(#) for bash4 or higher
 
 source "$(blib --prefix)/bash-oo-framework/lib/oo-bootstrap.sh"
 import blib:libtar
 import blib:libfile
-ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
-source ${ex_path}/lib/shgif.sh
+import blib:libshgif
 
 Shigif.Init() {
   local file=$1
