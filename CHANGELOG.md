@@ -6,6 +6,10 @@ Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://ww
 ## WIP
   - bpkg support
 
+## [1.5.1] - 2019-03-03
+### Changed
+  * use blib to manage libshgif
+
 ## [1.5.0] - 2019-03-02
 ### Changed
   * Use blib to manage libraries
