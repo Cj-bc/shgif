@@ -11,8 +11,7 @@
 source "$(blib --prefix)/bash-oo-framework/lib/oo-bootstrap.sh"
 import blib:libtar
 import blib:libfile
-ex_path=$( cd "${BASH_SOURCE[0]%/*}" && pwd )
-source ${ex_path}/lib/shgif.sh
+import blib:libshgif
 
 Shigif.Init() {
   local file=$1
