@@ -6,6 +6,10 @@ Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://ww
 ## WIP
   - bpkg support
 
+## [1.5.2] - 2019-03-04
+### Fixed
+  * Allow less than 10 and more than 99 x coordinates in config file
+
 ## [1.5.1] - 2019-03-03
 ### Changed
   * use blib to manage libshgif
