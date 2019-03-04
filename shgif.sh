@@ -39,8 +39,7 @@ Shgif.main() {
   while read -r first second third rest; do
     case $first in
       "sleep" ) sleep "$second";;
-      [0-9][0-9] ) Shgif::DrawAt "$first" "$second" "${file_path}/src/${third}.txt";;
-      * ) continue;;
+      * ) [[ $first =~ [0-9]* ]] && Shgif::DrawAt "$first" "$second" "${file_path}/src/${third}.txt";;
     esac
   done < "${file_path}/${file_without_path/.tar*/.shgif}"
 
