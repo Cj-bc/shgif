@@ -6,6 +6,11 @@ Unofficial Japanese docs for reference [keep-a-changelog softantenna](https://ww
 ## WIP
   - bpkg support
 
+## [1.5.3] - 2019-03-04
+### Fixed
+  * Use proper regex for case command(case command uses regex, not glob)
+
+
 ## [1.5.2] - 2019-03-04
 ### Fixed
   * Allow less than 10 and more than 99 x coordinates in config file

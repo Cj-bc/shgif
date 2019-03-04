@@ -5,7 +5,7 @@
 # copyright (c) 2018 Cj-bc
 # This software is released under MIT License
 #
-# @(#) ver1.5.2
+# @(#) ver1.5.3
 # @(#) for bash4 or higher
 
 source "$(blib --prefix)/bash-oo-framework/lib/oo-bootstrap.sh"
@@ -39,7 +39,8 @@ Shgif.main() {
   while read -r first second third rest; do
     case $first in
       "sleep" ) sleep "$second";;
-      * ) [[ $first =~ [0-9]* ]] && Shgif::DrawAt "$first" "$second" "${file_path}/src/${third}.txt";;
+      * ) [[ $first =~ ^[0-9]+$ ]]  &&
+              Shgif::DrawAt "$first" "$second" "${file_path}/src/${third}.txt";;
     esac
   done < "${file_path}/${file_without_path/.tar*/.shgif}"
 
