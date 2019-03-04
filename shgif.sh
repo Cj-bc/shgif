@@ -5,7 +5,7 @@
 # copyright (c) 2018 Cj-bc
 # This software is released under MIT License
 #
-# @(#) ver1.5.2
+# @(#) ver1.5.3
 # @(#) for bash4 or higher
 
 source "$(blib --prefix)/bash-oo-framework/lib/oo-bootstrap.sh"
