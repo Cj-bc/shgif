@@ -1,3 +1,10 @@
+# PROJECT IS MOVED
+
+This project is moved to [Cj-bc/brick-shgif](https://github.com/Cj-bc/brick-shgif) and changed to Haskell.
+Please visit there.
+
+---
+
 # Shgif -- shell-gif
 
 shgif is one of the simplest gif-like player made by ASCIIs
